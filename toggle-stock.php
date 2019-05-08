@@ -1,12 +1,12 @@
 <?php
-/**
+/*
 Plugin Name: Toggle Stock
-Plugin URI: https://theseedgroup.com
+Plugin URI: https://github.com/d0n601/toggle-stock/
 Description: Adds an "out of stock" or "in stock" button to wordpress admin panel on WooCommerce product pages, for quick toggling by shop managers.
 Author: Ryan Kozak
 Version: 0.0.1
 Author URI: https://theseedgroup.com
-**/
+*/
 
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
