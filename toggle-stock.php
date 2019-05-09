@@ -4,7 +4,7 @@ Plugin Name: Toggle Stock
 Plugin URI: https://github.com/d0n601/toggle-stock/
 Description: Adds an "out of stock" or "in stock" button to wordpress admin panel on WooCommerce product pages, for quick toggling by shop managers.
 Author: Ryan Kozak
-Version: 0.0.1
+Version: 0.0.2
 Author URI: https://theseedgroup.com
 */
 
@@ -22,6 +22,37 @@ function toggle_stock_assets() {
 
 
 
+/**
+ * Add an authenticated WP REST API endpoint for toggling the product's stock.
+ *
+ */
+add_action( 'rest_api_init', function () {
+    register_rest_route('toggle-stock/v1', '/toggle', array(
+        'methods' => 'POST',
+        'callback' => 'toggle_product_stock',
+        'permission_callback' => function () {
+            return array_intersect(array('editor', 'administrator', 'author'), wp_get_current_user()->roles);
+        }
+    ));
+});
+
+
+
+/**
+ * Show an admin notice if WooCommerce isn't enabled.
+ *
+ */
+function check_woocommerce_active() {
+    if ( !is_plugin_active( 'woocommerce/woocommerce.php' )) {
+        add_action('admin_notices', function() { ?>
+            <div class="notice notice-error" >
+                <p> Please Enable WooCommerce, or Toggle Stock is Useless!</p>
+            </div><?php
+        });
+    }
+} add_action( 'admin_init', 'check_woocommerce_active' );
+
+
 
 /**
  * Toggle's a non-managed product's stock to in/out of stock.
@@ -31,11 +62,9 @@ function toggle_product_stock() {
 
     if ( empty($_POST) || !isset($_POST['pid'])) return "No Post";
 
-
     $product = wc_get_product( $_POST['pid']);
 
     if(!$product) return "No Product!";
-
 
     if($product->is_in_stock()) {
         $product->set_stock_status('outofstock');
@@ -47,8 +76,6 @@ function toggle_product_stock() {
     $product->save();
 
     return $product;
-
-
 }
 
 
@@ -62,7 +89,6 @@ function toggle_product_stock_link( $wp_admin_bar ) {
 
     // Only show on product pages
     if(is_admin() || !is_product())  return;
-
 
     global $product;
 
@@ -81,19 +107,3 @@ function toggle_product_stock_link( $wp_admin_bar ) {
     $wp_admin_bar->add_node( array('id' => 'toggle_product_stock', 'meta'  => array('html'  => $button_html) ));
 
 } add_action( 'admin_bar_menu', 'toggle_product_stock_link', 999 );
-
-
-
-/**
- * Add an authenticated WP REST API endpoint for toggling the product's stock.
- *
- */
-add_action( 'rest_api_init', function () {
-    register_rest_route('toggle-stock/v1', '/toggle', array(
-        'methods' => 'POST',
-        'callback' => 'toggle_product_stock',
-        'permission_callback' => function () {
-            return array_intersect(array('editor', 'administrator', 'author'), wp_get_current_user()->roles);
-        }
-    ));
-});
