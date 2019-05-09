@@ -98,10 +98,10 @@ function toggle_product_stock_link( $wp_admin_bar ) {
     $pid = $product->get_id();
 
     if($product->is_in_stock()) {
-        $button_html = "<p id='tsock_seed' class='stock out-of-stock' style='margin-top:-32px; cursor:pointer;' data-pid='$pid'>Set Out of stock</p>";
+        $button_html = "<p id='tsock_seed' class='stock out-of-stock' style='margin-top:-32px; cursor:pointer;' data-pid='$pid'>Set In Stock</p>";
     }
     else {
-        $button_html = "<p id='tsock_seed' class='stock in-stock' style='margin-top:-32px; cursor:pointer;' data-pid='$pid'>Set In of stock</p>";
+        $button_html = "<p id='tsock_seed' class='stock in-stock' style='margin-top:-32px; cursor:pointer;' data-pid='$pid'>Set Out Of Stock</p>";
     }
 
     $wp_admin_bar->add_node( array('id' => 'toggle_product_stock', 'meta'  => array('html'  => $button_html) ));
