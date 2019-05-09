@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  *
  */
 function toggle_stock_assets() {
-    wp_enqueue_script( 'toggle_stock_js',  plugins_url( 'toggle-stock.js', __FILE__ ), [ 'wp-api' ]);
+    wp_enqueue_script( 'toggle_stock_js',  plugins_url( '/js/toggle-stock.js', __FILE__ ), [ 'wp-api' ]);
 } add_action('wp_enqueue_scripts', 'toggle_stock_assets');
 
 
