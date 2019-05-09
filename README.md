@@ -14,9 +14,9 @@ This is a lightweight WordPress/WooCommerce plugin which adds a toggle button to
 
 
 ## Screenshots
- 1. A single product page for a product that is out of stock.
+ 1. A single product page for a product that is in stock.
  ![toggle-product-to-out-stock](https://raw.githubusercontent.com/d0n601/toggle-stock/master/images/screenshot-1.png)
  
  
- 2. A single product page for a product that is in of stock.
+ 2. A single product page for a product that is out of stock.
  ![toggle-product-to-in-stock](https://raw.githubusercontent.com/d0n601/toggle-stock/master/images/screenshot-2.png)
