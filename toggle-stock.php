@@ -35,7 +35,7 @@ add_action( 'rest_api_init', function () {
         'methods' => 'POST',
         'callback' => 'toggle_product_stock',
         'permission_callback' => function () {
-            return array_intersect(array('editor', 'administrator', 'author'), wp_get_current_user()->roles);
+            return array_intersect(array('editor', 'administrator', 'author', 'shop_manager'), wp_get_current_user()->roles);
         }
     ));
 });
