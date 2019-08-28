@@ -1,11 +1,17 @@
-#tsock_seed {
+#tsock_seed,
+#tsock_seed_variation {
     margin-top: -32px;
     cursor: pointer;
-    float: right;
     width: 250px;
+    color: white;
     text-align: center;
     font-weight: bold;
     font-size: 1.25em;
+    float: right;
+}
+
+.tsock_seed_variation {
+	display: none;
 }
 
 .tsock_seed_out {
@@ -13,4 +19,7 @@
 }
 .tsock_seed_in {
 	background-color: green;
+}
+.tsock_seed_variable {
+	background-color: yellow;
 }
