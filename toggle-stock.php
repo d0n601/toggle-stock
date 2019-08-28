@@ -13,11 +13,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 
 /**
- * Enqueue our JS
+ * Enqueue our Assets
  *
  */
 function toggle_stock_assets() {
+    
     wp_enqueue_script( 'toggle_stock_js',  plugins_url( '/js/toggle-stock.js', __FILE__ ), [ 'wp-api' ]);
+    wp_register_style('toggle_stock_css', plugin_dir_url(__FILE__).'/css/toggle-stock.css');
+    wp_enqueue_style('toggle_stock_css');
+
 } add_action('wp_enqueue_scripts', 'toggle_stock_assets');
 
 
@@ -98,10 +102,10 @@ function toggle_product_stock_link( $wp_admin_bar ) {
     $pid = $product->get_id();
 
     if($product->is_in_stock()) {
-        $button_html = "<p id='tsock_seed' class='stock out-of-stock' style='margin-top:-32px; cursor:pointer;' data-pid='$pid'>Set to Out Stock</p>";
+        $button_html = "<p id='tsock_seed' class='stock out-of-stock tsock_seed_out' style='margin-top:-32px; cursor:pointer;' data-pid='$pid'>Set to Out Stock</p>";
     }
     else {
-        $button_html = "<p id='tsock_seed' class='stock in-stock' style='margin-top:-32px; cursor:pointer;' data-pid='$pid'>Set to In Stock</p>";
+        $button_html = "<p id='tsock_seed' class='stock in-stock tsock_seed_in' style='margin-top:-32px; cursor:pointer;' data-pid='$pid'>Set to In Stock</p>";
     }
 
     $wp_admin_bar->add_node( array('id' => 'toggle_product_stock', 'meta'  => array('html'  => $button_html) ));

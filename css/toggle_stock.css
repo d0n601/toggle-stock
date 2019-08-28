@@ -1,0 +1,17 @@
+
+#tsock_seed {
+    margin-top: -32px;
+    cursor: pointer;
+    float: right;
+    width: 250px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.tsock_seed_out {
+	background-color: red;
+}
+.tsock_seed_in {
+	background-color: green;
+}
