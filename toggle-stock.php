@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 function toggle_stock_assets() {
     
     wp_enqueue_script( 'toggle_stock_js',  plugins_url( '/js/toggle-stock.js', __FILE__ ), [ 'wp-api' ]);
-    wp_register_style('toggle_stock_css', plugin_dir_url(__FILE__).'/css/toggle-stock.css');
+    wp_register_style('toggle_stock_css', plugin_dir_url(__FILE__).'/css/toggle_stock.css');
     wp_enqueue_style('toggle_stock_css');
 
 } add_action('wp_enqueue_scripts', 'toggle_stock_assets');
